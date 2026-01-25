@@ -8,7 +8,7 @@ This project demonstrates a secure, production-ready implementation of the **Mod
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -56,7 +56,7 @@ This project demonstrates a secure, production-ready implementation of the **Mod
 └────────────────────────────────────────────────────────┘
 ```
 
-## 🔒 Security Features
+## Security Features
 
 | Feature             | With MCP 
 |---------            |---------
