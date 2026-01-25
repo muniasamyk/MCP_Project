@@ -1,0 +1,18 @@
+2026-01-24 19:36:25,651 - agents.planner_agent - INFO - Planner analyzing: Fetch employee details where department is AI
+2026-01-24 19:36:25,653 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-24 19:37:27,718 - agents.llm_provider - ERROR - ❌ Ollama error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:37:27,720 - agents.planner_agent - ERROR - Planning failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:37:27,728 - agents.executor_agent - INFO - Executing plan: {'error': "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)"}
+2026-01-24 19:37:27,729 - agents.executor_agent - ERROR - ❌ Plan is invalid - missing tool
+2026-01-24 19:37:34,033 - agents.planner_agent - INFO - Planner analyzing: Show all projects with status completed
+2026-01-24 19:37:34,033 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-24 19:38:36,119 - agents.llm_provider - ERROR - ❌ Ollama error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:38:36,120 - agents.planner_agent - ERROR - Planning failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:38:36,123 - agents.executor_agent - INFO - Executing plan: {'error': "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)"}
+2026-01-24 19:38:36,123 - agents.executor_agent - ERROR - ❌ Plan is invalid - missing tool
+2026-01-24 19:39:30,839 - agents.planner_agent - INFO - Planner analyzing: List all high priority issues
+2026-01-24 19:39:30,840 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-24 19:40:32,889 - agents.llm_provider - ERROR - ❌ Ollama error: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:40:32,889 - agents.planner_agent - ERROR - Planning failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)
+2026-01-24 19:40:32,892 - agents.executor_agent - INFO - Executing plan: {'error': "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=60)"}
+2026-01-24 19:40:32,893 - agents.executor_agent - ERROR - ❌ Plan is invalid - missing tool

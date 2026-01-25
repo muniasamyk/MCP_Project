@@ -1,0 +1,42 @@
+2026-01-25 10:32:10,796 - agents.planner_agent - INFO - Planner analyzing: Fetch employee details where department is AI
+2026-01-25 10:32:10,797 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-25 10:34:30,938 - agents.llm_provider - INFO - Ollama response received
+2026-01-25 10:34:30,940 - agents.planner_agent - INFO - LLM Response:  {
+  "tool": "get_employees_by_department",
+  "parameters": { "department": "AI" },
+  "reasoning": "The query asks for fetching employee details where department is AI, and this tool matches that requ...
+2026-01-25 10:34:30,941 - agents.planner_agent - INFO - ✅ Plan: {'tool': 'get_employees_by_department', 'parameters': {'department': 'AI'}, 'reasoning': 'The query asks for fetching employee details where department is AI, and this tool matches that requirement.'}
+2026-01-25 10:34:30,944 - agents.executor_agent - INFO - Executing plan: {'tool': 'get_employees_by_department', 'parameters': {'department': 'AI'}, 'reasoning': 'The query asks for fetching employee details where department is AI, and this tool matches that requirement.'}
+2026-01-25 10:34:30,944 - agents.executor_agent - INFO - Tool: get_employees_by_department, Parameters: {'department': 'AI'}
+2026-01-25 10:34:30,944 - agents.executor_agent - INFO - Calling tool: get_employees_by_department
+2026-01-25 10:34:30,945 - mcp.tools - INFO - Tool called: get_employees_by_department with input=AI
+2026-01-25 10:34:31,190 - database.db_executor - INFO - Found 3 employees in AI department
+2026-01-25 10:34:31,190 - agents.executor_agent - INFO - Tool executed successfully, got 3 rows
+2026-01-25 10:42:08,602 - agents.planner_agent - INFO - Planner analyzing: What are the projects that are in progress?
+2026-01-25 10:42:08,602 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-25 10:44:24,828 - agents.llm_provider - INFO - Ollama response received
+2026-01-25 10:44:24,832 - agents.planner_agent - INFO - LLM Response:  {
+  "tool": "get_projects_by_status",
+  "parameters": { "status": "In Progress" },
+  "reasoning": "The query 'What are the projects that are in progress?' asks for information about projects with a s...
+2026-01-25 10:44:24,833 - agents.planner_agent - INFO - ✅ Plan: {'tool': 'get_projects_by_status', 'parameters': {'status': 'In Progress'}, 'reasoning': "The query 'What are the projects that are in progress?' asks for information about projects with a specific status, which matches the functionality of the tool 'get_projects_by_status'."}
+2026-01-25 10:44:24,844 - agents.executor_agent - INFO - Executing plan: {'tool': 'get_projects_by_status', 'parameters': {'status': 'In Progress'}, 'reasoning': "The query 'What are the projects that are in progress?' asks for information about projects with a specific status, which matches the functionality of the tool 'get_projects_by_status'."}
+2026-01-25 10:44:24,844 - agents.executor_agent - INFO - Tool: get_projects_by_status, Parameters: {'status': 'In Progress'}
+2026-01-25 10:44:24,844 - agents.executor_agent - INFO - Calling tool: get_projects_by_status
+2026-01-25 10:44:24,844 - mcp.tools - INFO - Tool called: get_projects_by_status with input=In Progress
+2026-01-25 10:44:25,043 - database.db_executor - INFO - Found 2 projects with status In Progress
+2026-01-25 10:44:25,047 - agents.executor_agent - INFO - Tool executed successfully, got 2 rows
+2026-01-25 10:44:25,099 - agents.planner_agent - INFO - Planner analyzing: What are the high priority issues?
+2026-01-25 10:44:25,101 - agents.llm_provider - INFO - Calling Ollama (mistral)...
+2026-01-25 10:45:34,827 - agents.llm_provider - INFO - Ollama response received
+2026-01-25 10:45:34,828 - agents.planner_agent - INFO - LLM Response:  {
+  "tool": "get_issues_by_priority",
+  "parameters": { "priority": "High" },
+  "reasoning": "The query 'What are the high priority issues?' is asking for information about issues with a specific pri...
+2026-01-25 10:45:34,828 - agents.planner_agent - INFO - ✅ Plan: {'tool': 'get_issues_by_priority', 'parameters': {'priority': 'High'}, 'reasoning': "The query 'What are the high priority issues?' is asking for information about issues with a specific priority level. The 'get_issues_by_priority' tool provides this functionality and requires a parameter specifying the priority level."}
+2026-01-25 10:45:34,829 - agents.executor_agent - INFO - Executing plan: {'tool': 'get_issues_by_priority', 'parameters': {'priority': 'High'}, 'reasoning': "The query 'What are the high priority issues?' is asking for information about issues with a specific priority level. The 'get_issues_by_priority' tool provides this functionality and requires a parameter specifying the priority level."}
+2026-01-25 10:45:34,829 - agents.executor_agent - INFO - Tool: get_issues_by_priority, Parameters: {'priority': 'High'}
+2026-01-25 10:45:34,830 - agents.executor_agent - INFO - Calling tool: get_issues_by_priority
+2026-01-25 10:45:34,830 - mcp.tools - INFO - Tool called: get_issues_by_priority with input=High
+2026-01-25 10:45:39,547 - database.db_executor - INFO - Found 2 issues with priority High
+2026-01-25 10:45:39,547 - agents.executor_agent - INFO - Tool executed successfully, got 2 rows
