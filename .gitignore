@@ -17,6 +17,13 @@ ENV/
 *.swp
 *.swo
 
+# Logs
+logs/
+*.log
+
+# Virtual environment
+.venv/
+
 # OS
 .DS_Store
 Thumbs.db

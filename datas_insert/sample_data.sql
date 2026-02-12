@@ -6,6 +6,7 @@
 -- Note:
 -- - Creating the database itself is intentionally NOT done here.
 -- - Ensure `mcp_db` exists before running this script.
+-- - Uses ON CONFLICT to allow safe re-runs without duplicate errors.
 
 -- Create employees table
 CREATE TABLE IF NOT EXISTS employees (
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS issues (
     due_date DATE
 );
 
--- Insert sample employee data
+-- Insert sample employee data (idempotent)
 INSERT INTO employees (name, email, department, salary, hire_date, is_active) VALUES
 ('Alice Johnson', 'alice@company.com', 'AI', 95000, '2022-01-15', TRUE),
 ('Bob Smith', 'bob@company.com', 'AI', 92000, '2022-03-20', TRUE),
@@ -52,19 +53,22 @@ INSERT INTO employees (name, email, department, salary, hire_date, is_active) VA
 ('Eva Martinez', 'eva@company.com', 'AI', 98000, '2022-02-01', TRUE),
 ('Frank Wilson', 'frank@company.com', 'DevOps', 90000, '2021-12-15', TRUE),
 ('Grace Lee', 'grace@company.com', 'Backend', 87000, '2022-04-20', TRUE),
-('Henry Chen', 'henry@company.com', 'Frontend', 84000, '2022-05-10', FALSE);
+('Henry Chen', 'henry@company.com', 'Frontend', 84000, '2022-05-10', FALSE)
+ON CONFLICT (email) DO NOTHING;
 
--- Insert sample project data
+-- Insert sample project data (idempotent)
 INSERT INTO projects (name, description, status, start_date, end_date, budget, lead_id) VALUES
 ('AI Model Development', 'Developing ML models for prediction', 'In Progress', '2023-01-01', '2024-12-31', 500000, 1),
 ('Web Portal Redesign', 'Redesigning company web portal', 'Completed', '2022-06-01', '2023-06-30', 150000, 4),
 ('Infrastructure Migration', 'Migrating to cloud infrastructure', 'In Progress', '2023-03-01', '2024-06-30', 300000, 6),
-('Mobile App Development', 'Building iOS and Android apps', 'Planning', '2024-01-01', '2025-06-30', 400000, 5);
+('Mobile App Development', 'Building iOS and Android apps', 'Planning', '2024-01-01', '2025-06-30', 400000, 5)
+ON CONFLICT (id) DO NOTHING;
 
--- Insert sample issue data
+-- Insert sample issue data (idempotent)
 INSERT INTO issues (title, description, priority, status, assigned_to, project_id, created_date, due_date) VALUES
 ('Database optimization needed', 'Optimize slow queries in ML pipeline', 'High', 'Open', 1, 1, '2024-01-10', '2024-02-10'),
 ('Frontend button styling issue', 'Fix button alignment on mobile', 'Medium', 'In Progress', 4, 2, '2024-01-12', '2024-01-25'),
 ('API rate limiting', 'Implement rate limiting for API', 'High', 'Open', 3, 3, '2024-01-15', '2024-02-15'),
 ('User authentication flow', 'Implement OAuth2 authentication', 'Critical', 'In Progress', 5, 4, '2024-01-20', '2024-02-20'),
-('Documentation update', 'Update API documentation', 'Low', 'Open', 6, 1, '2024-01-22', '2024-02-05');
+('Documentation update', 'Update API documentation', 'Low', 'Open', 6, 1, '2024-01-22', '2024-02-05')
+ON CONFLICT (id) DO NOTHING;
