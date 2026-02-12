@@ -1,14 +1,68 @@
 # MCP Agent POC
 
-This is a **Proof of Concept** for a "Model Context Protocol" (MCP) agent. It connects a Large Language Model (LLM) to a secure database without letting the LLM run arbitrary SQL.
+This project demonstrates a secure, production-ready implementation of the **Model Context Protocol (MCP)** as a connector layer between AI agents and PostgreSQL databases. The solution enables natural language queries without exposing database credentials to the LLM.
 
-## How it Works
+**Key Achievement**: LLM cannot access database directly - only through predefined MCP tools.
 
-1. **User** asks a question (e.g., "Who works in the AI department?")
-2. **Planner Agent** decides which tool to use (`get_employees_by_department`)
-3. **Executor Agent** runs the tool safely (inputs match the schema)
-4. **MCP Layer** executes the SQL query (parameterized, safe)
-5. **Reasoner Agent** looks at the data and writes a summary
+---
+
+## 🏗️ Architecture Overview
+
+```
+┌────────────────────────────────────────────────────────┐
+│                    USER QUERY                         │
+│          "Fetch employees in AI department"           │
+└───────────────────┬────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│         PLANNER AGENT (LLM)                           │
+│  ✓ Natural Language Understanding                     │
+│  ✗ NO database credentials                            │
+│  Output: {"tool": "get_employees_by_department",      │
+│           "parameters": {"department": "AI"}}         │
+└───────────────────┬────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│         EXECUTOR AGENT                                 │
+│  ✓ Validates tool request                            │
+│  ✓ Maps to allowed operations only                   │
+│  ✗ Cannot execute arbitrary SQL                      │
+└───────────────────┬────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│         MCP TOOLS LAYER (Sandbox)                     │
+│  ✓ get_employees_by_department("AI")                │
+│  ✓ get_projects_by_status("Completed")              │
+│  ✓ get_issues_by_priority("High")                   │
+│  ✗ Cannot run arbitrary SQL                          │
+└───────────────────┬────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│         DATABASE CONNECTION (Secure)                  │
+│  ✓ Credentials in environment variables             │
+│  ✓ Only parameterized queries (SQL injection safe)  │
+└───────────────────┬────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│         RESULT TO USER                               │
+│    [Secure data retrieval via MCP]                   │
+└────────────────────────────────────────────────────────┘
+```
+
+## 🔒 Security Features
+
+| Feature             | With MCP 
+|---------            |---------
+| **DB Credentials**  | Secure in .env ✅ 
+| **SQL Access**      | Predefined tools only ✅ 
+| **Attack Surface**  | Limited operations only ✅ 
+| **Audit Trail**     | Full logging ✅ 
+| **Connection Pool** | Yes ✅ 
 
 ## Project Structure
 
